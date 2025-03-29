@@ -271,7 +271,8 @@
 
 	.dan-head {
 		position: fixed;
-		width: 25rem; /* Adjust the size as needed */
+		height: 100%; /* Adjust the size as needed */
+		top: 0px;
 		z-index: 2;
 	}
 
