@@ -1,5 +1,5 @@
 <script>
-		/**
+	/**
 	 * This app is a simple countdown timer from 60 seconds to 0.
 	 * It shows a picture of Daniel, who, when clicked, will start the countdown.
 	 * At first, it zooms in on his head slowly, but as the time gets closer to 0,
@@ -231,7 +231,7 @@
 					min="0"
 					bind:value={countdownMinutes}
 				/>
-				minutes
+				<span class="prompt-text"> minutes</span>
 				<input
 					type="number"
 					inputmode="numeric"
@@ -240,7 +240,7 @@
 					min="0"
 					bind:value={countdownSeconds}
 				/>
-				seconds
+				<span class="prompt-text"> seconds</span>
 			</span>
 			<button class="start-button" onclick={startCountdown}> START </button>
 		</div>
@@ -282,6 +282,14 @@
 		width: 3rem;
 		text-align: right;
 		padding: 4px 8px;
+	}
+
+	.prompt-text {
+		font-family: sans-serif;
+		font-size: 2rem;
+		font-weight: bold;
+		color: white;
+		-webkit-text-stroke: 1px black;
 	}
 
 	.back-button,

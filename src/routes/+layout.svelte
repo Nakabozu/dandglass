@@ -30,5 +30,9 @@
 		width: 100%;
 		margin: 0 auto;
 		box-sizing: border-box;
+		background-image: url($lib/images/DanCollage.png);
+		background-size: cover;
+		background-position: center;
+		background-repeat: no-repeat;
 	}
 </style>
