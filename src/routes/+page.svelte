@@ -1,9 +1,5 @@
 <script>
-	import { onMount, tick } from 'svelte';
-	import explosionSound from '/src/lib/explosion.mp3';
-	import tickSound from '/src/lib/beep.mp3';
-	import tockSound from '/src/lib/boop.mp3';
-	/**
+		/**
 	 * This app is a simple countdown timer from 60 seconds to 0.
 	 * It shows a picture of Daniel, who, when clicked, will start the countdown.
 	 * At first, it zooms in on his head slowly, but as the time gets closer to 0,
@@ -15,7 +11,18 @@
 	 * Finally, a picture of Daniel will appear in the center of the screen with a caption
 	 * "MINUTE TO WIN IT" and a button to restart the countdown.
 	 */
-	import ZoomInImage from '../components/ZoomInImage.svelte';
+
+	import { onMount, tick } from 'svelte';
+	import explosionSound from '$lib/explosion.mp3';
+	import tickSound from '$lib/beep.mp3';
+	import tockSound from '$lib/boop.mp3';
+	import explosionGif from '$lib/images/explosion.gif';
+	import spaceImage from '$lib/images/space.jpg';
+	import danHeadImage from '$lib/images/DanHead.png';
+	import backSvg from '$lib/images/back.svg';
+	import muteSvg from '$lib/images/mute.svg';
+	import unmuteSvg from '$lib/images/unmute.svg';
+
 	const danielImages = [
 		'DanCake.jpg',
 		'DanChill.jpg',
@@ -42,7 +49,7 @@
 		'DanTreat.jpg',
 		'DanWine.jpg'
 	];
-	const preloadImageUrls = ['explosion.gif', 'space.jpg'].map((img) => `/src/lib/images/${img}`);
+	// const preloadImageUrls = ['DanHead.png', 'explosion.gif', 'space.jpg'].map((img) => `$lib/images/${img}`);
 	let explosionSoundElement, tickSoundElement, tockSoundElement;
 
 	let countdownMinutes = $state(1);
@@ -157,9 +164,6 @@
 <svelte:head>
 	<title>DANIEL'S MINUTE TO WIN IT</title>
 	<meta name="description" content="Svelte demo app" />
-	{#each preloadImageUrls as image}
-		<link rel="preload" as="image" href={image} />
-	{/each}
 </svelte:head>
 
 <section>
@@ -168,7 +172,7 @@
 		<audio src={tickSound} bind:this={tickSoundElement}></audio>
 		<audio src={tockSound} bind:this={tockSoundElement}></audio>
 		<button class="back-button" onclick={stopCountdown} aria-label="Go back">
-			<img height="50px" src="/src/lib/images/back.svg" alt="Back icon" />
+			<img height="50px" src={backSvg} alt="Back icon" />
 		</button>
 		{#if isMuted}
 			<button
@@ -178,7 +182,7 @@
 				}}
 				aria-label="Mute"
 			>
-				<img height="50px" src="/src/lib/images/mute.svg" alt="Mute Icon" />
+				<img height="50px" src={muteSvg} alt="Mute Icon" />
 			</button>
 		{:else}
 			<button
@@ -188,15 +192,14 @@
 				}}
 				aria-label="Go back"
 			>
-				<img height="50px" src="/src/lib/images/unmute.svg" alt="Unmute Icon" />
+				<img height="50px" src={unmuteSvg} alt="Unmute Icon" />
 			</button>
 		{/if}
 		<div class="background">
-			<img src="/src/lib/images/space.jpg" alt="Space Background" class="background-image" />
-			<img src="/src/lib/images/space.jpg" alt="Space Background" class="background-image" />
+			<img src={spaceImage} alt="Space Background" class="background-image" />
 		</div>
 		{#if isDone}
-			<img src="/src/lib/images/explosion.gif" alt="Explosion" class="explosion" />
+			<img src={explosionGif} alt="Explosion" class="explosion" />
 		{/if}
 
 		<div class="timer">
@@ -211,7 +214,7 @@
 		</div>
 		{#if !isDone}
 			<img
-				src="/src/lib/images/DanHead.png"
+				src={danHeadImage}
 				alt="Dan Head"
 				class="dan-head spin"
 				style="--spin-duration: {danSpinDuration}s;"
